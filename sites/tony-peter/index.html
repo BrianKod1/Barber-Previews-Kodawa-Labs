@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tony &amp; Peter — Frith Road, Croydon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Mono:wght@500;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#191919;
+    --steel:#4A4E52;
+    --rust:#A85028;
+    --cream:#EDE7DC;
+    --panel:#222222;
+    --line: rgba(237,231,220,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Barlow', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  .label{
+    font-family:'Roboto Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--rust);
+  }
+  h1,h2,h3{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    line-height:1.02;
+    text-transform:uppercase;
+    letter-spacing:0.005em;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 40px;
+    background:linear-gradient(to bottom, rgba(25,25,25,0.95), rgba(25,25,25,0));
+  }
+  header .brand{
+    font-family:'Anton', sans-serif; letter-spacing:0.02em; font-size:1.2rem; text-transform:uppercase;
+  }
+  header .brand span{color:var(--rust);}
+  nav{display:flex; gap:30px; align-items:center;}
+  nav a{
+    font-family:'Roboto Mono', monospace; font-size:0.78rem;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--cream); opacity:0.78;
+    transition:opacity 0.2s ease;
+  }
+  nav a:hover, nav a:focus-visible{opacity:1; color:var(--rust);}
+  .nav-cta{
+    border:1px solid var(--rust); padding:9px 18px; border-radius:2px; opacity:1 !important;
+  }
+  .nav-cta:hover{background:var(--rust); color:var(--ink);}
+  @media (max-width:920px){ nav{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; position:relative; display:flex; align-items:center;
+    padding-top:100px;
+    background:
+      repeating-linear-gradient(135deg, rgba(74,78,82,0.08) 0 2px, transparent 2px 26px),
+      radial-gradient(circle at 85% 15%, rgba(168,80,40,0.14), transparent 45%),
+      var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; width:100%;
+  }
+  .eyebrow-row{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
+  .eyebrow-row .rule{width:36px; height:3px; background:var(--rust);}
+  .hero h1{
+    font-size:clamp(2.6rem, 5.6vw, 4.8rem);
+    margin-bottom:22px;
+  }
+  .hero h1 span{color:var(--rust);}
+  .hero p.lede{
+    font-size:1.1rem; line-height:1.65; color:rgba(237,231,220,0.78);
+    max-width:460px; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn-primary, .btn-secondary{
+    font-family:'Roboto Mono', monospace; text-transform:uppercase; letter-spacing:0.04em;
+    font-size:0.82rem; font-weight:700; padding:15px 30px; border-radius:2px; display:inline-block;
+    transition:all 0.2s ease;
+  }
+  .btn-primary{background:var(--rust); color:var(--ink); border:1px solid var(--rust);}
+  .btn-primary:hover{background:#c2622f;}
+  .btn-secondary{border:1px solid var(--line); color:var(--cream);}
+  .btn-secondary:hover{border-color:var(--rust); color:var(--rust);}
+
+  .hero-meta{
+    display:flex; gap:34px; font-family:'Roboto Mono', monospace; font-size:0.76rem;
+    color:rgba(237,231,220,0.6); text-transform:uppercase; letter-spacing:0.03em;
+  }
+  .hero-meta strong{
+    display:block; color:var(--cream); font-size:1.4rem; font-family:'Anton', sans-serif;
+    letter-spacing:0; text-transform:none; margin-bottom:2px;
+  }
+
+  /* Riveted plate signature */
+  .plate-stage{display:flex; justify-content:center;}
+  .plate{
+    width:270px; background:linear-gradient(155deg, #57595c, #3a3c3e);
+    border-radius:6px; padding:34px 26px; position:relative;
+    box-shadow:0 30px 70px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(237,231,220,0.08);
+    transform:rotate(-2deg);
+  }
+  .rivet{
+    position:absolute; width:12px; height:12px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #d8d8d8, #6b6b6b 70%);
+    box-shadow:0 2px 3px rgba(0,0,0,0.5);
+  }
+  .rivet.tl{top:12px; left:12px;} .rivet.tr{top:12px; right:12px;}
+  .rivet.bl{bottom:12px; left:12px;} .rivet.br{bottom:12px; right:12px;}
+  .plate-title{font-family:'Anton', sans-serif; font-size:1.5rem; color:var(--cream); text-align:center; margin-bottom:8px; letter-spacing:0.02em;}
+  .plate-sub{font-family:'Roboto Mono', monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--rust); text-align:center; margin-bottom:20px;}
+  .plate-line{border-top:1px dashed rgba(237,231,220,0.25); margin:16px 0; padding-top:16px;}
+  .plate-fact{display:flex; justify-content:space-between; font-family:'Roboto Mono', monospace; font-size:0.75rem; color:rgba(237,231,220,0.75); margin-bottom:8px;}
+  .plate-fact b{color:var(--cream);}
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .plate-stage{order:-1; margin-bottom:0;}
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:54px; border-bottom:1px solid var(--line); padding-bottom:26px;
+  }
+  .section-head h2{font-size:clamp(2rem, 3.8vw, 2.8rem);}
+  .section-head p{color:rgba(237,231,220,0.6); max-width:360px; font-size:0.95rem; line-height:1.6;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--panel); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;}
+  .about-visual{
+    aspect-ratio:4/5; border-radius:4px; border:1px solid var(--line);
+    background:
+      repeating-linear-gradient(0deg, rgba(74,78,82,0.15) 0 1px, transparent 1px 22px),
+      repeating-linear-gradient(90deg, rgba(74,78,82,0.15) 0 1px, transparent 1px 22px),
+      var(--ink);
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:30px;
+  }
+  .about-visual .qtxt{ font-family:'Anton', sans-serif; font-size:1.3rem; color:var(--cream); line-height:1.35;}
+  .about-visual .qtxt span{color:var(--rust);}
+  .about-copy p{line-height:1.75; color:rgba(237,231,220,0.8); margin-bottom:18px; font-size:1.02rem;}
+  .about-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;
+    padding-top:32px; border-top:1px solid var(--line);
+  }
+  .about-stats div strong{
+    display:block; font-family:'Anton', sans-serif; font-size:1.8rem; color:var(--rust);
+  }
+  .about-stats div span{
+    font-family:'Roboto Mono', monospace; font-size:0.68rem; letter-spacing:0.04em;
+    text-transform:uppercase; color:rgba(237,231,220,0.55);
+  }
+  @media (max-width:920px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{order:-1; aspect-ratio:16/9;}
+  }
+
+  /* ---------- BANTER BOARD ---------- */
+  .banter-board{
+    border:1px solid var(--line); border-radius:4px; background:#1e1e1e;
+    padding:34px 32px;
+  }
+  .banter-board .board-label{font-family:'Roboto Mono', monospace; text-transform:uppercase; letter-spacing:0.12em; font-size:0.72rem; color:var(--rust); margin-bottom:18px; display:block;}
+  .banter-list{list-style:none; display:grid; grid-template-columns:repeat(2, 1fr); gap:16px 40px;}
+  .banter-list li{
+    font-family:'Barlow', sans-serif; font-size:1.05rem; padding:12px 0; border-bottom:1px dashed var(--line);
+    display:flex; align-items:center; gap:12px;
+  }
+  .banter-list li::before{content:"—"; color:var(--rust); font-family:'Anton', sans-serif;}
+  @media (max-width:700px){ .banter-list{grid-template-columns:1fr;} }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:0 60px;}
+  .service-row{
+    display:flex; align-items:center; gap:16px; padding:17px 0; border-bottom:1px solid var(--line);
+  }
+  .service-row .dot{width:8px; height:8px; background:var(--rust); flex:none;}
+  .service-row .name{font-family:'Anton', sans-serif; font-size:1rem; letter-spacing:0.01em;}
+  .service-note{
+    margin-top:34px; padding:20px 24px; border:1px dashed var(--line); border-radius:4px;
+    font-family:'Barlow', sans-serif; font-size:1rem; color:rgba(237,231,220,0.68);
+  }
+  .service-note b{color:var(--rust);}
+  @media (max-width:800px){ .services-grid{grid-template-columns:1fr;} }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--panel); border-bottom:1px solid var(--line);}
+  .review-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  .review-card{
+    background:var(--ink); border:1px solid var(--line); border-radius:4px; padding:28px 26px;
+  }
+  .review-card .quote{font-size:1.02rem; line-height:1.55; margin-bottom:20px; color:var(--cream);}
+  .review-card .who{
+    font-family:'Roboto Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--rust);
+  }
+  @media (max-width:920px){ .review-grid{grid-template-columns:1fr;} }
+
+  /* ---------- VISIT / MAP ---------- */
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+  .visit-block{margin-bottom:30px;}
+  .visit-block .label{margin-bottom:10px; display:block;}
+  .visit-block .value{font-family:'Anton', sans-serif; font-size:1.2rem; letter-spacing:0.01em;}
+  .hours-table{width:100%; border-collapse:collapse; margin-top:8px;}
+  .hours-table td{
+    padding:9px 0; border-bottom:1px solid var(--line);
+    font-family:'Roboto Mono', monospace; font-size:0.8rem; letter-spacing:0.01em;
+  }
+  .hours-table td:first-child{text-transform:uppercase; color:rgba(237,231,220,0.55); letter-spacing:0.05em; font-size:0.7rem;}
+  .hours-table td:last-child{text-align:right; color:var(--cream);}
+  .hours-table tr.today td{color:var(--rust);}
+  .hours-table tr.closed td:last-child{color:rgba(237,231,220,0.4);}
+  .map-frame{
+    border-radius:4px; overflow:hidden; border:1px solid var(--line); aspect-ratio:1/1;
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:grayscale(65%) contrast(1.05);}
+  @media (max-width:920px){ .visit-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta-band{
+    text-align:center; padding:100px 0;
+    background: radial-gradient(circle at 50% 0%, rgba(168,80,40,0.2), transparent 55%), var(--ink);
+  }
+  .cta-band h2{font-size:clamp(2rem, 4.6vw, 3.2rem); margin-bottom:22px;}
+  .cta-band p{color:rgba(237,231,220,0.7); max-width:480px; margin:0 auto 38px; line-height:1.6;}
+
+  footer{padding:46px 0; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-grid .brand{font-family:'Anton', sans-serif; letter-spacing:0.02em;}
+  .footer-links{
+    display:flex; gap:26px; font-family:'Roboto Mono', monospace; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:rgba(237,231,220,0.6);
+  }
+  .footer-links a:hover{color:var(--rust);}
+  .footer-note{font-size:0.75rem; color:rgba(237,231,220,0.4); margin-top:18px; text-align:center;}
+
+  .preview-badge{
+    position:fixed; bottom:18px; right:18px; z-index:200;
+    background:var(--rust); color:var(--ink);
+    font-family:'Roboto Mono', monospace; font-size:0.68rem; text-transform:uppercase;
+    letter-spacing:0.05em; font-weight:700; padding:9px 14px; border-radius:2px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+  }
+  :focus-visible{outline:2px solid var(--rust); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Tony <span>&amp;</span> Peter</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+    <a class="nav-cta" href="tel:+442086887469">Call Now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-row"><div class="rule"></div><span class="label">Frith Road · Croydon</span></div>
+      <h1>Proper cuts.<br>Stronger <span>opinions.</span></h1>
+      <p class="lede">Tony &amp; Peter is a proper gent's barbershop on Frith Road — freshly refitted with an industrial, old-school edge, and a barber's chair that comes with a side of lively debate.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="tel:+442086887469">Call 020 8688 7469</a>
+        <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Tony+%26+Peter+53+Frith+Road+Croydon+CR0+1TB" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>20+ Yrs</strong>Joe Behind the Chair</div>
+        <div><strong>Refitted</strong>Industrial Look</div>
+        <div><strong>Fair</strong>Prices</div>
+      </div>
+    </div>
+    <div class="plate-stage">
+      <div class="plate">
+        <div class="rivet tl"></div><div class="rivet tr"></div>
+        <div class="rivet bl"></div><div class="rivet br"></div>
+        <div class="plate-title">Tony &amp; Peter</div>
+        <div class="plate-sub">Frith Road, Croydon</div>
+        <div class="plate-line">
+          <div class="plate-fact"><span>Style</span><b>Industrial / Old-School</b></div>
+          <div class="plate-fact"><span>Barber</span><b>Joe — 20+ Years</b></div>
+          <div class="plate-fact"><span>Banter</span><b>Included</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual"><div class="qtxt">Refitted.<br>Refined.<br><span>Still proper.</span></div></div>
+    <div class="about-copy">
+      <span class="label">The Shop</span>
+      <h2 style="margin:14px 0 22px; font-size:clamp(1.7rem,3vw,2.2rem);">A proper gent's barbers since day one.</h2>
+      <p>Tony &amp; Peter has been a Frith Road fixture for decades, and a recent refit gave it an industrial, old-school-Americana look without losing what made it a neighbourhood institution in the first place.</p>
+      <p>Regulars have followed the same barber, Joe, for twenty years and counting — the kind of loyalty that only comes from consistently sharp cuts and a shop that treats every visit like a conversation, not a transaction.</p>
+      <div class="about-stats">
+        <div><strong>20+</strong><span>Years With Joe</span></div>
+        <div><strong>6</strong><span>Days Open</span></div>
+        <div><strong>1</strong><span>Full Refit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>On The Chair, On The Table</h2>
+      <p>What's usually being debated while you get your fade sorted.</p>
+    </div>
+    <div class="banter-board">
+      <span class="board-label">Today's Topics</span>
+      <ul class="banter-list">
+        <li>Last night's football result</li>
+        <li>What actually counts as a proper fade</li>
+        <li>Who's got the better barber in Croydon</li>
+        <li>Whatever's on the telly this week</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Services</h2>
+      <p>From a 1's-all-over to something a bit more elaborate.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-row"><div class="dot"></div><div class="name">Men's Haircut</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Skin Fade</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Beard Trim</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Hot Towel Shave</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Head Shave</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Hair &amp; Styling</div></div>
+    </div>
+    <div class="service-note">Reasonable, fair prices — <b>call 020 8688 7469</b> to check current rates before you visit.</div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Guests Say</h2>
+      <p>From regulars and one-time visitors alike.</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="quote">"Excellent Covid precautions and a great haircut at a good price, every time. I've used Joe for at least the last twenty years — wouldn't go anywhere else."</div>
+        <div class="who">Long-Time Client</div>
+      </div>
+      <div class="review-card">
+        <div class="quote">"Great to see the big man back in business after the refit. Love the industrial chic look — proper barbershop, the best in town."</div>
+        <div class="who">Regular Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="quote">"A proper gent's barbers. From a 1's-all-over to more elaborate styles, they offer it all at a good price — good banter as well."</div>
+        <div class="who">Local Guest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="label">Find The Shop</span>
+      <h2 style="margin:16px 0 34px; font-size:clamp(1.7rem,3vw,2.2rem);">Frith Road, Croydon</h2>
+
+      <div class="visit-block">
+        <span class="label">Address</span>
+        <div class="value">53 Frith Road, Croydon, CR0 1TB</div>
+      </div>
+      <div class="visit-block">
+        <span class="label">Phone</span>
+        <div class="value"><a href="tel:+442086887469">020 8688 7469</a></div>
+      </div>
+
+      <span class="label">Hours</span>
+      <table class="hours-table">
+        <tr class="closed"><td>Monday</td><td>Closed</td></tr>
+        <tr><td>Tuesday</td><td>8:30a – 5:30p</td></tr>
+        <tr><td>Wednesday</td><td>8:30a – 5:30p</td></tr>
+        <tr class="today"><td>Thursday</td><td>8:30a – 8:00p</td></tr>
+        <tr><td>Friday</td><td>8:30a – 5:30p</td></tr>
+        <tr><td>Saturday</td><td>8:30a – 5:30p</td></tr>
+        <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+      </table>
+    </div>
+    <div class="map-frame">
+      <iframe
+        loading="lazy"
+        src="https://www.google.com/maps?q=53+Frith+Road,+Croydon,+CR0+1TB&output=embed"
+        title="Map to Tony & Peter, 53 Frith Road, Croydon">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="label">Ready For Round Two?</span>
+    <h2 style="margin-top:16px;">Get in the chair.</h2>
+    <p>53 Frith Road, Croydon CR0 1TB — Tuesday through Saturday, banter guaranteed.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn-primary" href="tel:+442086887469">Call 020 8688 7469</a>
+      <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Tony+%26+Peter+53+Frith+Road+Croydon+CR0+1TB" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="brand">Tony &amp; Peter</div>
+      <div class="footer-links">
+        <a href="tel:+442086887469">020 8688 7469</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Tony+%26+Peter+53+Frith+Road+Croydon+CR0+1TB" target="_blank" rel="noopener">Directions</a>
+      </div>
+    </div>
+    <div class="footer-note">53 Frith Road, Croydon, CR0 1TB · This is an unofficial concept preview site, not affiliated with or published by Tony &amp; Peter.</div>
+  </div>
+</footer>
+
+<div class="preview-badge">Concept Preview</div>
+
+</body>
+</html>

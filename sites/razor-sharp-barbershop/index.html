@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Razor Sharp Barbershop — La Marque, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Chivo+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#131313;
+    --steel:#C9CDD1;
+    --crimson:#B0202A;
+    --panel:#1D1D1D;
+    --text:#EDEDE7;
+    --line: rgba(237,237,231,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  .label{
+    font-family:'Chivo Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--crimson);
+  }
+  h1,h2,h3{
+    font-family:'Teko', sans-serif;
+    font-weight:600;
+    line-height:0.98;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 40px;
+    background:linear-gradient(to bottom, rgba(19,19,19,0.95), rgba(19,19,19,0));
+  }
+  header .brand{
+    font-family:'Teko', sans-serif; font-weight:600; letter-spacing:0.03em; font-size:1.4rem; text-transform:uppercase;
+  }
+  header .brand span{color:var(--crimson);}
+  nav{display:flex; gap:30px; align-items:center;}
+  nav a{
+    font-family:'Chivo Mono', monospace; font-size:0.76rem;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--text); opacity:0.78;
+    transition:opacity 0.2s ease;
+  }
+  nav a:hover, nav a:focus-visible{opacity:1; color:var(--crimson);}
+  .nav-cta{
+    border:1px solid var(--crimson); padding:9px 18px; border-radius:2px; opacity:1 !important;
+  }
+  .nav-cta:hover{background:var(--crimson); color:var(--text);}
+  @media (max-width:920px){ nav{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; position:relative; display:flex; align-items:center;
+    padding-top:100px;
+    background:
+      radial-gradient(circle at 87% 18%, rgba(176,32,42,0.16), transparent 45%),
+      radial-gradient(circle at 6% 90%, rgba(201,205,209,0.08), transparent 40%),
+      var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; width:100%;
+  }
+  .eyebrow-row{display:flex; align-items:center; gap:14px; margin-bottom:20px;}
+  .eyebrow-row .rule{width:36px; height:3px; background:var(--crimson);}
+  .hero h1{
+    font-size:clamp(3.2rem, 7vw, 6rem);
+    margin-bottom:20px;
+  }
+  .hero h1 span{color:var(--crimson);}
+  .hero p.lede{
+    font-family:'Inter', sans-serif; font-size:1.08rem; line-height:1.65; color:rgba(237,237,231,0.78);
+    max-width:460px; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn-primary, .btn-secondary{
+    font-family:'Chivo Mono', monospace; text-transform:uppercase; letter-spacing:0.03em;
+    font-size:0.8rem; font-weight:700; padding:15px 30px; border-radius:2px; display:inline-block;
+    transition:all 0.2s ease;
+  }
+  .btn-primary{background:var(--crimson); color:var(--text); border:1px solid var(--crimson);}
+  .btn-primary:hover{background:#8f1a22;}
+  .btn-secondary{border:1px solid var(--line); color:var(--text);}
+  .btn-secondary:hover{border-color:var(--steel); color:var(--steel);}
+
+  .hero-meta{
+    display:flex; gap:34px; font-family:'Chivo Mono', monospace; font-size:0.74rem;
+    color:rgba(237,237,231,0.6); text-transform:uppercase; letter-spacing:0.03em;
+  }
+  .hero-meta strong{
+    display:block; color:var(--text); font-size:1.3rem; font-family:'Teko', sans-serif; font-weight:600;
+    letter-spacing:0; text-transform:none; margin-bottom:2px;
+  }
+
+  /* Blade signature */
+  .blade-stage{display:flex; justify-content:center;}
+  .blade-card{
+    width:270px; background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:4px; padding:0; overflow:hidden;
+    box-shadow:0 30px 70px rgba(0,0,0,0.5);
+  }
+  .blade-edge{
+    height:10px;
+    background:linear-gradient(90deg, var(--steel), #f5f5f2 45%, var(--steel) 55%, #9a9ea1);
+  }
+  .blade-body{padding:30px 26px; text-align:center;}
+  .blade-title{font-family:'Teko', sans-serif; font-size:2rem; font-weight:600; color:var(--text); letter-spacing:0.03em; margin-bottom:4px;}
+  .blade-sub{font-family:'Chivo Mono', monospace; font-size:0.66rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--crimson); margin-bottom:20px;}
+  .blade-divider{border-top:1px dashed var(--line); margin:14px 0;}
+  .blade-line{display:flex; justify-content:space-between; font-family:'Inter', sans-serif; font-size:0.85rem; color:rgba(237,237,231,0.75); padding:4px 0;}
+  .blade-line b{color:var(--text);}
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .blade-stage{order:-1; margin-bottom:0;}
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:54px; border-bottom:1px solid var(--line); padding-bottom:26px;
+  }
+  .section-head h2{font-size:clamp(2.4rem, 4.4vw, 3.4rem);}
+  .section-head p{font-family:'Inter', sans-serif; color:rgba(237,237,231,0.6); max-width:360px; font-size:0.95rem; line-height:1.6;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--panel); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;}
+  .about-visual{
+    aspect-ratio:4/5; border-radius:4px; border:1px solid var(--line);
+    background:linear-gradient(160deg, #262626, var(--panel));
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:30px;
+  }
+  .about-visual .qtxt{ font-family:'Teko', sans-serif; font-size:1.7rem; font-weight:600; color:var(--text); line-height:1.15; text-transform:uppercase;}
+  .about-visual .qtxt span{color:var(--crimson);}
+  .about-copy p{font-family:'Inter', sans-serif; line-height:1.75; color:rgba(237,237,231,0.8); margin-bottom:18px; font-size:1.02rem;}
+  .about-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;
+    padding-top:32px; border-top:1px solid var(--line);
+  }
+  .about-stats div strong{
+    display:block; font-family:'Teko', sans-serif; font-size:2.1rem; font-weight:600; color:var(--crimson);
+  }
+  .about-stats div span{
+    font-family:'Chivo Mono', monospace; font-size:0.66rem; letter-spacing:0.05em;
+    text-transform:uppercase; color:rgba(237,237,231,0.55);
+  }
+  @media (max-width:920px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{order:-1; aspect-ratio:16/9;}
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:0 60px;}
+  .service-row{
+    display:flex; align-items:center; gap:16px; padding:17px 0; border-bottom:1px solid var(--line);
+  }
+  .service-row .dot{width:7px; height:7px; background:var(--crimson); flex:none;}
+  .service-row .name{font-family:'Teko', sans-serif; font-weight:600; font-size:1.25rem; letter-spacing:0.02em;}
+  .service-note{
+    margin-top:34px; padding:20px 24px; border:1px dashed var(--line); border-radius:4px;
+    font-family:'Inter', sans-serif; font-size:0.98rem; color:rgba(237,237,231,0.7);
+  }
+  .service-note b{color:var(--crimson);}
+  @media (max-width:800px){ .services-grid{grid-template-columns:1fr;} }
+
+  /* ---------- VALUES ---------- */
+  .values-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  .value-card{
+    border:1px solid var(--line); border-radius:4px; padding:30px 26px;
+    background:rgba(29,29,29,0.5);
+  }
+  .value-card .v-label{font-family:'Chivo Mono', monospace; text-transform:uppercase; letter-spacing:0.1em; font-size:0.7rem; color:var(--crimson); margin-bottom:10px; display:block;}
+  .value-card .v-title{font-family:'Teko', sans-serif; font-weight:600; font-size:1.7rem; margin-bottom:10px; text-transform:uppercase;}
+  .value-card p{font-family:'Inter', sans-serif; font-size:0.95rem; line-height:1.6; color:rgba(237,237,231,0.7);}
+  @media (max-width:800px){ .values-grid{grid-template-columns:1fr;} }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--panel); border-bottom:1px solid var(--line);}
+  .review-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:26px;}
+  .review-card{
+    background:var(--ink); border:1px solid var(--line); border-radius:4px; padding:28px 26px;
+  }
+  .review-card .quote{font-family:'Inter', sans-serif; font-size:1.02rem; line-height:1.55; margin-bottom:20px; color:var(--text);}
+  .review-card .who{
+    font-family:'Chivo Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--crimson);
+  }
+  @media (max-width:800px){ .review-grid{grid-template-columns:1fr;} }
+
+  /* ---------- VISIT / MAP ---------- */
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+  .visit-block{margin-bottom:30px;}
+  .visit-block .label{margin-bottom:10px; display:block;}
+  .visit-block .value{font-family:'Teko', sans-serif; font-weight:600; font-size:1.4rem; letter-spacing:0.02em;}
+  .hours-table{width:100%; border-collapse:collapse; margin-top:8px;}
+  .hours-table td{
+    padding:9px 0; border-bottom:1px solid var(--line);
+    font-family:'Chivo Mono', monospace; font-size:0.8rem; letter-spacing:0.01em;
+  }
+  .hours-table td:first-child{text-transform:uppercase; color:rgba(237,237,231,0.55); letter-spacing:0.05em; font-size:0.7rem;}
+  .hours-table td:last-child{text-align:right; color:var(--text);}
+  .hours-table tr.today td{color:var(--crimson);}
+  .hours-table tr.closed td:last-child{color:rgba(237,237,231,0.4);}
+  .map-frame{
+    border-radius:4px; overflow:hidden; border:1px solid var(--line); aspect-ratio:1/1;
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:grayscale(75%) contrast(1.08);}
+  @media (max-width:920px){ .visit-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta-band{
+    text-align:center; padding:100px 0;
+    background: radial-gradient(circle at 50% 0%, rgba(176,32,42,0.2), transparent 55%), var(--ink);
+  }
+  .cta-band h2{font-size:clamp(2.6rem, 5.6vw, 4rem); margin-bottom:22px;}
+  .cta-band p{font-family:'Inter', sans-serif; color:rgba(237,237,231,0.7); max-width:480px; margin:0 auto 38px; line-height:1.6;}
+
+  footer{padding:46px 0; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-grid .brand{font-family:'Teko', sans-serif; font-weight:600; letter-spacing:0.02em; font-size:1.2rem; text-transform:uppercase;}
+  .footer-links{
+    display:flex; gap:26px; font-family:'Chivo Mono', monospace; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:rgba(237,237,231,0.6);
+  }
+  .footer-links a:hover{color:var(--crimson);}
+  .footer-note{font-family:'Inter', sans-serif; font-size:0.75rem; color:rgba(237,237,231,0.4); margin-top:18px; text-align:center;}
+
+  .preview-badge{
+    position:fixed; bottom:18px; right:18px; z-index:200;
+    background:var(--crimson); color:var(--text);
+    font-family:'Chivo Mono', monospace; font-size:0.68rem; text-transform:uppercase;
+    letter-spacing:0.05em; font-weight:700; padding:9px 14px; border-radius:2px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+  }
+  :focus-visible{outline:2px solid var(--crimson); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Razor <span>Sharp</span></div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+    <a class="nav-cta" href="tel:+14093593268">Call Now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-row"><div class="rule"></div><span class="label">1st Street · La Marque, TX</span></div>
+      <h1>Cut clean.<br>Cut <span>sharp.</span></h1>
+      <p class="lede">Razor Sharp Barbershop is La Marque's own — precise fades and line-ups in a genuinely family-friendly shop that welcomes kids, adults, and elders alike. Book ahead or walk right in.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="tel:+14093593268">Call (409) 359-3268</a>
+        <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Razor+Sharp+Barbershop+1211+1st+Street+La+Marque+TX+77568" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>Tue–Sat</strong>Open Days</div>
+        <div><strong>All Ages</strong>Family Welcome</div>
+        <div><strong>Walk-In</strong>Or By Appt</div>
+      </div>
+    </div>
+    <div class="blade-stage">
+      <div class="blade-card">
+        <div class="blade-edge"></div>
+        <div class="blade-body">
+          <div class="blade-title">Razor Sharp</div>
+          <div class="blade-sub">Barbershop &middot; La Marque</div>
+          <div class="blade-divider"></div>
+          <div class="blade-line"><span>Hours</span><b>Tue&ndash;Sat</b></div>
+          <div class="blade-line"><span>Welcomes</span><b>Kids to Elders</b></div>
+          <div class="blade-line"><span>Booking</span><b>Appt or Walk-In</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual"><div class="qtxt">Precision cuts.<br><span>Family shop.</span></div></div>
+    <div class="about-copy">
+      <span class="label">The Shop</span>
+      <h2 style="margin:14px 0 22px; font-size:clamp(2rem,3.6vw,2.6rem);">La Marque's Neighborhood Barbers</h2>
+      <p>Razor Sharp Barbershop sits on 1st Street in La Marque, Texas, and has built its name on clean, precise cuts — from tight fades to detailed line-ups. It's a shop the whole town knows, and gift cards are even sold through Giftly for locals looking to share the experience.</p>
+      <p>The shop describes itself as a social, family-friendly environment welcoming to kids, adults, and elders alike, rooted in Christian values. Cuts are available by appointment or walk-in, whichever works for your schedule.</p>
+      <div class="about-stats">
+        <div><strong>TX</strong><span>La Marque</span></div>
+        <div><strong>5</strong><span>Days a Week</span></div>
+        <div><strong>All</strong><span>Ages Welcome</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Services</h2>
+      <p>Cuts and grooming for the whole family.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-row"><div class="dot"></div><div class="name">Men's Haircut</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Skin Fade</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Line-Up / Edge Up</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Beard Trim</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Head Shave</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Kids Haircut</div></div>
+    </div>
+    <div class="service-note">Pricing is confirmed in-shop — <b>call (409) 359-3268</b> to check current rates before you visit.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What The Shop Stands For</h2>
+      <p>A community fixture, built to welcome every generation.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <span class="v-label">Community</span>
+        <div class="v-title">La Marque Local</div>
+        <p>A genuine neighborhood shop on 1st Street, the kind of place regulars have followed for years.</p>
+      </div>
+      <div class="value-card">
+        <span class="v-label">Family</span>
+        <div class="v-title">All Generations</div>
+        <p>A social, family-friendly environment that welcomes kids, adults, and elders in the same chairs.</p>
+      </div>
+      <div class="value-card">
+        <span class="v-label">Flexible</span>
+        <div class="v-title">Your Schedule</div>
+        <p>Cuts by appointment or walk-in — come when it works for you, Tuesday through Saturday.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Guests Say</h2>
+      <p>Feedback from around La Marque.</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="quote">"This place is the real deal — solid, reliable cuts from a shop that knows the neighborhood."</div>
+        <div class="who">Local Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="quote">"Get ready to rock the sharpest look in town — that's the reputation this shop has earned locally."</div>
+        <div class="who">City of La Marque Feature</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="label">Find The Shop</span>
+      <h2 style="margin:16px 0 34px; font-size:clamp(2rem,3.6vw,2.6rem);">1st Street, La Marque</h2>
+
+      <div class="visit-block">
+        <span class="label">Address</span>
+        <div class="value">1211 1st Street<br>La Marque, TX 77568</div>
+      </div>
+      <div class="visit-block">
+        <span class="label">Phone</span>
+        <div class="value"><a href="tel:+14093593268">(409) 359-3268</a></div>
+      </div>
+
+      <span class="label">Hours</span>
+      <table class="hours-table">
+        <tr class="closed"><td>Monday</td><td>Closed</td></tr>
+        <tr><td>Tuesday</td><td>8:00a – 6:30p</td></tr>
+        <tr><td>Wednesday</td><td>8:00a – 6:30p</td></tr>
+        <tr class="today"><td>Thursday</td><td>8:00a – 6:30p</td></tr>
+        <tr><td>Friday</td><td>8:00a – 6:30p</td></tr>
+        <tr><td>Saturday</td><td>8:00a – 6:30p</td></tr>
+        <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+      </table>
+    </div>
+    <div class="map-frame">
+      <iframe
+        loading="lazy"
+        src="https://www.google.com/maps?q=1211+1st+Street,+La+Marque,+TX+77568&output=embed"
+        title="Map to Razor Sharp Barbershop, 1211 1st Street, La Marque, TX">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="label">Ready When You Are</span>
+    <h2 style="margin-top:16px;">Get In The Chair.</h2>
+    <p>1211 1st Street, La Marque, TX 77568 — open Tuesday through Saturday.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn-primary" href="tel:+14093593268">Call (409) 359-3268</a>
+      <a class="btn-secondary" href="https://www.instagram.com/razorsharpbarbershoptexas/" target="_blank" rel="noopener">See us on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="brand">Razor Sharp Barbershop</div>
+      <div class="footer-links">
+        <a href="tel:+14093593268">(409) 359-3268</a>
+        <a href="https://www.instagram.com/razorsharpbarbershoptexas/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-note">1211 1st Street, La Marque, TX 77568 · This is an unofficial concept preview site, not affiliated with or published by Razor Sharp Barbershop.</div>
+  </div>
+</footer>
+
+<div class="preview-badge">Concept Preview</div>
+
+</body>
+</html>

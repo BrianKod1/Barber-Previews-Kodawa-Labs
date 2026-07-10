@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Barbers (Tamil Saloon) — Croydon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F2A2A;
+    --paper:#F6EEDD;
+    --saffron:#E2932B;
+    --vermillion:#B23A2E;
+    --teal:#1F5C5A;
+    --teal-2:#173F3E;
+    --line: rgba(246,238,221,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  .label{
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.2em;
+    font-size:0.8rem;
+    font-weight:600;
+    color:var(--saffron);
+  }
+  h1,h2,h3{
+    font-family:'Yeseva One', serif;
+    font-weight:400;
+    line-height:1.08;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    background:linear-gradient(to bottom, rgba(15,42,42,0.94), rgba(15,42,42,0));
+  }
+  header .brand{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700; letter-spacing:0.06em; font-size:1.15rem; text-transform:uppercase;
+  }
+  header .brand span{color:var(--saffron);}
+  nav{display:flex; gap:32px; align-items:center;}
+  nav a{
+    font-family:'Barlow Condensed', sans-serif; font-size:0.95rem;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--paper); opacity:0.82;
+    transition:opacity 0.2s ease;
+  }
+  nav a:hover, nav a:focus-visible{opacity:1; color:var(--saffron);}
+  .nav-cta{
+    border:1px solid var(--saffron); padding:9px 18px; border-radius:2px; opacity:1 !important;
+  }
+  .nav-cta:hover{background:var(--saffron); color:var(--ink);}
+  @media (max-width:920px){ nav{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; position:relative; display:flex; align-items:center;
+    padding-top:110px;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(226,147,43,0.16), transparent 45%),
+      radial-gradient(circle at 8% 88%, rgba(178,58,46,0.14), transparent 40%),
+      var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center; width:100%;
+  }
+  .eyebrow-row{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
+  .eyebrow-row .rule{width:36px; height:1px; background:var(--saffron);}
+  .hero h1{
+    font-size:clamp(2.6rem, 5.6vw, 4.6rem);
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal; color:var(--saffron);}
+  .hero p.lede{
+    font-size:1.08rem; line-height:1.65; color:rgba(246,238,221,0.78);
+    max-width:460px; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn-primary, .btn-secondary{
+    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase; letter-spacing:0.06em;
+    font-size:1rem; font-weight:600; padding:15px 30px; border-radius:2px; display:inline-block;
+    transition:all 0.2s ease;
+  }
+  .btn-primary{background:var(--vermillion); color:var(--paper); border:1px solid var(--vermillion);}
+  .btn-primary:hover{background:#c94534;}
+  .btn-secondary{border:1px solid var(--line); color:var(--paper);}
+  .btn-secondary:hover{border-color:var(--saffron); color:var(--saffron);}
+
+  .hero-meta{
+    display:flex; gap:34px; font-family:'Barlow Condensed', sans-serif; font-size:0.9rem;
+    color:rgba(246,238,221,0.65); text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .hero-meta strong{
+    display:block; color:var(--paper); font-size:1.5rem; font-family:'Yeseva One', serif;
+    letter-spacing:0; text-transform:none; margin-bottom:2px;
+  }
+
+  /* Now-serving ticket signature */
+  .ticket-stage{display:flex; justify-content:center;}
+  .ticket{
+    width:280px;
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:6px;
+    padding:30px 26px 26px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.5);
+    position:relative;
+    transform:rotate(-2deg);
+  }
+  .ticket::before, .ticket::after{
+    content:"";
+    position:absolute; width:26px; height:26px; background:var(--ink);
+    border-radius:50%; top:50%; transform:translateY(-50%);
+  }
+  .ticket::before{left:-13px;}
+  .ticket::after{right:-13px;}
+  .ticket .t-label{
+    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase; letter-spacing:0.18em;
+    font-size:0.72rem; color:var(--vermillion); font-weight:700; margin-bottom:6px;
+  }
+  .ticket .t-number{
+    font-family:'Yeseva One', serif; font-size:4.4rem; line-height:1; color:var(--teal-2);
+    margin-bottom:10px;
+  }
+  .ticket .t-sub{
+    font-family:'Barlow Condensed', sans-serif; font-size:0.95rem; letter-spacing:0.04em;
+    border-top:1px dashed rgba(15,42,42,0.3); padding-top:12px; color:rgba(15,42,42,0.7);
+  }
+  .ticket .t-sub b{color:var(--vermillion);}
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .ticket-stage{order:-1; margin-bottom:6px; transform:scale(0.85);}
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:54px; border-bottom:1px solid var(--line); padding-bottom:26px;
+  }
+  .section-head h2{font-size:clamp(2rem, 3.8vw, 2.8rem);}
+  .section-head p{color:rgba(246,238,221,0.6); max-width:360px; font-size:0.95rem; line-height:1.6;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--teal-2); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;}
+  .about-visual{
+    aspect-ratio:4/5; border-radius:4px; position:relative; overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg, rgba(226,147,43,0.14) 0 18px, transparent 18px 36px),
+      var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line);
+  }
+  .about-visual .comb{
+    font-family:'Yeseva One', serif; color:var(--saffron); font-size:1.1rem;
+    text-align:center; letter-spacing:0.02em; padding:0 30px;
+  }
+  .about-copy p{line-height:1.75; color:rgba(246,238,221,0.8); margin-bottom:18px; font-size:1.02rem;}
+  .about-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;
+    padding-top:32px; border-top:1px solid var(--line);
+  }
+  .about-stats div strong{
+    display:block; font-family:'Yeseva One', serif; font-size:1.9rem; color:var(--saffron);
+  }
+  .about-stats div span{
+    font-family:'Barlow Condensed', sans-serif; font-size:0.8rem; letter-spacing:0.06em;
+    text-transform:uppercase; color:rgba(246,238,221,0.55);
+  }
+  @media (max-width:920px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{order:-1; aspect-ratio:16/9;}
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px 60px;}
+  .service-row{
+    display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  .service-row .dot{
+    width:8px; height:8px; border-radius:50%; background:var(--saffron); flex:none;
+  }
+  .service-row .name{font-family:'Yeseva One', serif; font-size:1.08rem;}
+  .service-note{
+    margin-top:34px; padding:20px 24px; border:1px dashed var(--line); border-radius:4px;
+    font-family:'Barlow Condensed', sans-serif; font-size:1rem; letter-spacing:0.02em;
+    color:rgba(246,238,221,0.7);
+  }
+  .service-note b{color:var(--saffron);}
+  @media (max-width:800px){ .services-grid{grid-template-columns:1fr;} }
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--teal-2); border-bottom:1px solid var(--line);}
+  .reviews-top{display:flex; align-items:center; gap:22px; margin-bottom:50px;}
+  .score{font-family:'Yeseva One', serif; font-size:3.2rem; color:var(--saffron);}
+  .score-detail{
+    font-family:'Barlow Condensed', sans-serif; font-size:0.9rem; letter-spacing:0.04em;
+    text-transform:uppercase; color:rgba(246,238,221,0.6); line-height:1.5;
+  }
+  .review-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  .review-card{
+    background:rgba(15,42,42,0.5); border:1px solid var(--line); border-radius:4px; padding:28px 26px;
+  }
+  .review-card .quote{
+    font-size:1.02rem; line-height:1.55; margin-bottom:20px; color:var(--paper);
+  }
+  .review-card .who{
+    font-family:'Barlow Condensed', sans-serif; font-size:0.85rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--saffron);
+  }
+  @media (max-width:920px){ .review-grid{grid-template-columns:1fr;} }
+
+  /* ---------- VISIT / MAP ---------- */
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+  .visit-block{margin-bottom:30px;}
+  .visit-block .label{margin-bottom:10px; display:block;}
+  .visit-block .value{font-family:'Yeseva One', serif; font-size:1.25rem;}
+  .walkin-badge{
+    display:inline-flex; align-items:center; gap:10px; margin-top:6px;
+    background:rgba(226,147,43,0.12); border:1px solid rgba(226,147,43,0.4);
+    padding:10px 16px; border-radius:3px;
+    font-family:'Barlow Condensed', sans-serif; text-transform:uppercase; letter-spacing:0.06em;
+    font-size:0.85rem; color:var(--saffron);
+  }
+  .map-frame{
+    border-radius:4px; overflow:hidden; border:1px solid var(--line); aspect-ratio:1/1;
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:sepia(20%) hue-rotate(140deg) saturate(0.7) brightness(0.9);}
+  @media (max-width:920px){ .visit-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta-band{
+    text-align:center; padding:100px 0;
+    background: radial-gradient(circle at 50% 0%, rgba(178,58,46,0.2), transparent 55%), var(--ink);
+  }
+  .cta-band h2{font-size:clamp(2rem, 4.6vw, 3.2rem); margin-bottom:22px;}
+  .cta-band p{color:rgba(246,238,221,0.7); max-width:480px; margin:0 auto 38px; line-height:1.6;}
+
+  footer{padding:46px 0; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-grid .brand{font-family:'Barlow Condensed', sans-serif; text-transform:uppercase; letter-spacing:0.06em; font-weight:700;}
+  .footer-links{
+    display:flex; gap:26px; font-family:'Barlow Condensed', sans-serif; font-size:0.85rem;
+    text-transform:uppercase; letter-spacing:0.05em; color:rgba(246,238,221,0.6);
+  }
+  .footer-links a:hover{color:var(--saffron);}
+  .footer-note{font-size:0.78rem; color:rgba(246,238,221,0.4); margin-top:18px; text-align:center;}
+
+  .preview-badge{
+    position:fixed; bottom:18px; right:18px; z-index:200;
+    background:var(--saffron); color:var(--ink);
+    font-family:'Barlow Condensed', sans-serif; font-size:0.78rem; text-transform:uppercase;
+    letter-spacing:0.06em; font-weight:700; padding:9px 14px; border-radius:2px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+  }
+  :focus-visible{outline:2px solid var(--saffron); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Best <span>Barbers</span> · Tamil Saloon</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+    <a class="nav-cta" href="tel:+447448978500">Call Now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-row"><div class="rule"></div><span class="label">South End · Croydon · Walk-Ins Only</span></div>
+      <h1>No booking.<br>Just <em>show up</em> sharp.</h1>
+      <p class="lede">Best Barbers (Tamil Saloon) runs on a first-come, first-served floor — no appointment app, no waiting on a text back. Grab a seat, get a clean fade, walk out on time.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="tel:+447448978500">Call 07448 978500</a>
+        <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Best+Barbers+Tamil+Saloon+28+South+End+Croydon+CR0+1DN" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>4.8 ★</strong>32 Google Reviews</div>
+        <div><strong>8:30a</strong>Typical Opening</div>
+        <div><strong>0</strong>Appointments Needed</div>
+      </div>
+    </div>
+    <div class="ticket-stage">
+      <div class="ticket">
+        <div class="t-label">Now Serving</div>
+        <div class="t-number" id="ticketNum">04</div>
+        <div class="t-sub"><b>Walk-ins only</b> — first come, first cut.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual"><div class="comb">Clippers on.<br>Chair open.<br>No booking needed.</div></div>
+    <div class="about-copy">
+      <span class="label">The Shop</span>
+      <h2 style="margin:14px 0 22px; font-size:clamp(1.7rem,3vw,2.2rem);">A proper walk-in barbershop, South End.</h2>
+      <p>Tucked on South End in Croydon, Best Barbers — known locally as Tamil Saloon — has built its name the old-fashioned way: sharp, consistent cuts and a strict no-appointment-needed policy. Turn up, take a seat, and you're next in line.</p>
+      <p>Regulars come back for the clean finishes and the vibe on the floor — good music, honest conversation, and barbers who take the time to get the line right.</p>
+      <div class="about-stats">
+        <div><strong>4.8</strong><span>Avg. Rating</span></div>
+        <div><strong>32</strong><span>Google Reviews</span></div>
+        <div><strong>0</strong><span>Apps Required</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What's On The Chair</h2>
+      <p>Core barbershop services — walk in and ask for what you need.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-row"><div class="dot"></div><div class="name">Men's Haircut</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Skin Fade</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Beard Trim &amp; Shape-Up</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Hot Towel Shave</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Line-Up / Outline</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Kids' Haircut</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Hair Tattoo / Design</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Cut &amp; Beard Combo</div></div>
+    </div>
+    <div class="service-note">Pricing is set on the shop floor and can change — <b>call 07448 978500</b> to check current prices before you head down.</div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Guests Say</h2>
+      <p>Real feedback from Google reviews.</p>
+    </div>
+    <div class="reviews-top">
+      <div class="score">4.8</div>
+      <div class="score-detail">out of 5<br>32 Google reviews</div>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="quote">"Quick, clean haircut with a great music vibe in the shop."</div>
+        <div class="who">Kailasam</div>
+      </div>
+      <div class="review-card">
+        <div class="quote">"Some of the most competitively priced barbering in the area."</div>
+        <div class="who">Pankaj Goyal</div>
+      </div>
+      <div class="review-card">
+        <div class="quote">"Clean cuts, friendly staff, great vibes."</div>
+        <div class="who">K Santhosh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="label">Find The Shop</span>
+      <h2 style="margin:16px 0 34px; font-size:clamp(1.7rem,3vw,2.2rem);">South End, Croydon</h2>
+
+      <div class="visit-block">
+        <span class="label">Address</span>
+        <div class="value">28 South End, Croydon, CR0 1DN</div>
+      </div>
+      <div class="visit-block">
+        <span class="label">Phone</span>
+        <div class="value"><a href="tel:+447448978500">07448 978500</a></div>
+      </div>
+      <div class="visit-block">
+        <span class="label">How It Works</span>
+        <div class="walkin-badge">● No appointments — first come, first served</div>
+      </div>
+      <div class="visit-block">
+        <span class="label">Hours</span>
+        <div class="value" style="font-size:1rem; font-family:'Manrope',sans-serif; color:rgba(246,238,221,0.75); line-height:1.6;">
+          Open daily from around 8:30am. Evenings tend to be busiest — call ahead if you want to check the queue before heading down.
+        </div>
+      </div>
+    </div>
+    <div class="map-frame">
+      <iframe
+        loading="lazy"
+        src="https://www.google.com/maps?q=28+South+End,+Croydon,+CR0+1DN&output=embed"
+        title="Map to Best Barbers Tamil Saloon, 28 South End, Croydon">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="label">No App. No Wait List.</span>
+    <h2 style="margin-top:16px;">Just walk in.</h2>
+    <p>28 South End, Croydon CR0 1DN — open daily, first come first served.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn-primary" href="tel:+447448978500">Call 07448 978500</a>
+      <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Best+Barbers+Tamil+Saloon+28+South+End+Croydon+CR0+1DN" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="brand">Best Barbers · Tamil Saloon</div>
+      <div class="footer-links">
+        <a href="tel:+447448978500">07448 978500</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Best+Barbers+Tamil+Saloon+28+South+End+Croydon+CR0+1DN" target="_blank" rel="noopener">Directions</a>
+      </div>
+    </div>
+    <div class="footer-note">28 South End, Croydon, CR0 1DN · This is an unofficial concept preview site, not affiliated with or published by the business.</div>
+  </div>
+</footer>
+
+<div class="preview-badge">Concept Preview</div>
+
+<script>
+  // gentle "now serving" ticker for the signature ticket element
+  const el = document.getElementById('ticketNum');
+  let n = 4;
+  setInterval(() => {
+    n = n >= 27 ? 1 : n + 1;
+    el.textContent = String(n).padStart(2, '0');
+  }, 2600);
+</script>
+
+</body>
+</html>

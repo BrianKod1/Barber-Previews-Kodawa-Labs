@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scissorhands Barbershop — League City, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12172B;
+    --cream:#F1EDE2;
+    --neon:#FF5A7A;
+    --cyan:#33C7C0;
+    --panel:#1B2140;
+    --line: rgba(241,237,226,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  .label{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--cyan);
+  }
+  h1,h2,h3{
+    font-family:'Chakra Petch', sans-serif;
+    font-weight:700;
+    line-height:1.08;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    background:linear-gradient(to bottom, rgba(18,23,43,0.94), rgba(18,23,43,0));
+  }
+  header .brand{
+    font-family:'Chakra Petch', sans-serif; font-weight:700; font-size:1.1rem;
+  }
+  header .brand span{color:var(--neon);}
+  nav{display:flex; gap:30px; align-items:center;}
+  nav a{
+    font-family:'Space Mono', monospace; font-size:0.76rem;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--cream); opacity:0.8;
+    transition:opacity 0.2s ease;
+  }
+  nav a:hover, nav a:focus-visible{opacity:1; color:var(--neon);}
+  .nav-cta{
+    border:1px solid var(--neon); padding:9px 18px; border-radius:2px; opacity:1 !important;
+  }
+  .nav-cta:hover{background:var(--neon); color:var(--ink);}
+  @media (max-width:920px){ nav{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; position:relative; display:flex; align-items:center;
+    padding-top:100px;
+    background:
+      radial-gradient(circle at 87% 18%, rgba(255,90,122,0.16), transparent 45%),
+      radial-gradient(circle at 6% 90%, rgba(51,199,192,0.18), transparent 40%),
+      var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; width:100%;
+  }
+  .eyebrow-row{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
+  .eyebrow-row .rule{width:36px; height:2px; background:var(--cyan);}
+  .hero h1{
+    font-size:clamp(2.5rem, 5.2vw, 4.4rem);
+    margin-bottom:22px;
+  }
+  .hero h1 span{color:var(--neon);}
+  .hero p.lede{
+    font-size:1.08rem; line-height:1.65; color:rgba(241,237,226,0.78);
+    max-width:460px; margin-bottom:34px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px;}
+  .btn-primary, .btn-secondary{
+    font-family:'Space Mono', monospace; text-transform:uppercase; letter-spacing:0.03em;
+    font-size:0.8rem; font-weight:700; padding:15px 30px; border-radius:2px; display:inline-block;
+    transition:all 0.2s ease;
+  }
+  .btn-primary{background:var(--neon); color:var(--ink); border:1px solid var(--neon);}
+  .btn-primary:hover{background:#ff7690;}
+  .btn-secondary{border:1px solid var(--line); color:var(--cream);}
+  .btn-secondary:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  .hero-meta{
+    display:flex; gap:34px; font-family:'Space Mono', monospace; font-size:0.76rem;
+    color:rgba(241,237,226,0.6); text-transform:uppercase; letter-spacing:0.03em;
+  }
+  .hero-meta strong{
+    display:block; color:var(--cream); font-size:1.35rem; font-family:'Chakra Petch', sans-serif;
+    letter-spacing:0; text-transform:none; margin-bottom:2px;
+  }
+
+  /* Arcade token signature */
+  .token-stage{display:flex; justify-content:center;}
+  .token{
+    width:230px; height:230px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #232a52, var(--panel) 70%);
+    border:3px solid var(--cyan);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    box-shadow:0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 6px rgba(51,199,192,0.12);
+    transform:rotate(-4deg);
+  }
+  .token::before{
+    content:""; position:absolute; inset:14px; border-radius:50%; border:1.5px dashed rgba(255,90,122,0.5);
+  }
+  .token-text{ text-align:center; }
+  .token-text .big{ font-family:'Chakra Petch', sans-serif; font-size:1.35rem; font-weight:700; color:var(--neon); line-height:1.2; margin-bottom:4px;}
+  .token-text .small{ font-family:'Space Mono', monospace; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(241,237,226,0.7);}
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .token-stage{order:-1; margin-bottom:0;}
+    .token{width:170px; height:170px;}
+    .token-text .big{font-size:1.05rem;}
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:54px; border-bottom:1px solid var(--line); padding-bottom:26px;
+  }
+  .section-head h2{font-size:clamp(2rem, 3.8vw, 2.8rem);}
+  .section-head p{color:rgba(241,237,226,0.6); max-width:360px; font-size:0.95rem; line-height:1.6;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--panel); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;}
+  .about-visual{
+    aspect-ratio:4/5; border-radius:4px; border:1px solid var(--line);
+    background:linear-gradient(160deg, #232a52, var(--panel));
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:30px;
+  }
+  .about-visual .qtxt{ font-family:'Chakra Petch', sans-serif; font-size:1.25rem; color:var(--cream); line-height:1.4;}
+  .about-visual .qtxt span{color:var(--neon);}
+  .about-copy p{line-height:1.75; color:rgba(241,237,226,0.8); margin-bottom:18px; font-size:1.02rem;}
+  .about-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;
+    padding-top:32px; border-top:1px solid var(--line);
+  }
+  .about-stats div strong{
+    display:block; font-family:'Chakra Petch', sans-serif; font-size:1.7rem; color:var(--neon);
+  }
+  .about-stats div span{
+    font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.05em;
+    text-transform:uppercase; color:rgba(241,237,226,0.55);
+  }
+  @media (max-width:920px){
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{order:-1; aspect-ratio:16/9;}
+  }
+
+  /* ---------- AMENITIES ---------- */
+  .amenities-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  .amenity-card{
+    border:1px solid var(--line); border-radius:4px; padding:30px 26px;
+    background:rgba(27,33,64,0.4);
+  }
+  .amenity-card .amenity-label{font-family:'Space Mono', monospace; text-transform:uppercase; letter-spacing:0.1em; font-size:0.72rem; color:var(--cyan); margin-bottom:10px; display:block;}
+  .amenity-card .amenity-title{font-family:'Chakra Petch', sans-serif; font-size:1.4rem; font-weight:700; margin-bottom:10px;}
+  .amenity-card p{font-size:0.95rem; line-height:1.6; color:rgba(241,237,226,0.7);}
+  @media (max-width:800px){ .amenities-grid{grid-template-columns:1fr;} }
+
+  /* ---------- SERVICES ---------- */
+  .services{background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .services-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:0 60px;}
+  .service-row{
+    display:flex; align-items:center; gap:16px; padding:17px 0; border-bottom:1px solid var(--line);
+  }
+  .service-row .dot{width:7px; height:7px; background:var(--neon); flex:none; border-radius:50%;}
+  .service-row .name{font-family:'Chakra Petch', sans-serif; font-size:1.02rem; font-weight:600;}
+  .service-note{
+    margin-top:34px; padding:20px 24px; border:1px dashed var(--line); border-radius:4px;
+    font-family:'Work Sans', sans-serif; font-size:0.98rem; color:rgba(241,237,226,0.7);
+  }
+  .service-note b{color:var(--neon);}
+  @media (max-width:800px){ .services-grid{grid-template-columns:1fr;} }
+
+  /* ---------- REVIEWS ---------- */
+  .review-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  .review-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:28px 26px;
+  }
+  .review-card .quote{font-size:1.02rem; line-height:1.55; margin-bottom:20px; color:var(--cream);}
+  .review-card .who{
+    font-family:'Space Mono', monospace; font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--neon);
+  }
+  @media (max-width:920px){ .review-grid{grid-template-columns:1fr;} }
+
+  /* ---------- VISIT / MAP ---------- */
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+  .visit-block{margin-bottom:30px;}
+  .visit-block .label{margin-bottom:10px; display:block;}
+  .visit-block .value{font-family:'Chakra Petch', sans-serif; font-size:1.2rem; font-weight:700;}
+  .hours-table{width:100%; border-collapse:collapse; margin-top:8px;}
+  .hours-table td{
+    padding:9px 0; border-bottom:1px solid var(--line);
+    font-family:'Space Mono', monospace; font-size:0.8rem; letter-spacing:0.01em;
+  }
+  .hours-table td:first-child{text-transform:uppercase; color:rgba(241,237,226,0.55); letter-spacing:0.05em; font-size:0.7rem;}
+  .hours-table td:last-child{text-align:right; color:var(--cream);}
+  .hours-table tr.today td{color:var(--neon);}
+  .map-frame{
+    border-radius:4px; overflow:hidden; border:1px solid var(--line); aspect-ratio:1/1;
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:hue-rotate(180deg) saturate(0.6) brightness(0.9);}
+  @media (max-width:920px){ .visit-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta-band{
+    text-align:center; padding:100px 0;
+    background: radial-gradient(circle at 50% 0%, rgba(255,90,122,0.18), transparent 55%), var(--ink);
+  }
+  .cta-band h2{font-size:clamp(2rem, 4.6vw, 3.2rem); margin-bottom:22px;}
+  .cta-band p{color:rgba(241,237,226,0.7); max-width:480px; margin:0 auto 38px; line-height:1.6;}
+
+  footer{padding:46px 0; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-grid .brand{font-family:'Chakra Petch', sans-serif; font-weight:700;}
+  .footer-links{
+    display:flex; gap:26px; font-family:'Space Mono', monospace; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.04em; color:rgba(241,237,226,0.6);
+  }
+  .footer-links a:hover{color:var(--neon);}
+  .footer-note{font-size:0.75rem; color:rgba(241,237,226,0.4); margin-top:18px; text-align:center;}
+
+  .preview-badge{
+    position:fixed; bottom:18px; right:18px; z-index:200;
+    background:var(--neon); color:var(--ink);
+    font-family:'Space Mono', monospace; font-size:0.68rem; text-transform:uppercase;
+    letter-spacing:0.05em; font-weight:700; padding:9px 14px; border-radius:2px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+  }
+  :focus-visible{outline:2px solid var(--neon); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Scissor<span>hands</span></div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#visit">Visit</a>
+    <a class="nav-cta" href="tel:+17138990979">Call Now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-row"><div class="rule"></div><span class="label">Gulf Fwy · League City, TX</span></div>
+      <h1>Fresh cuts.<br><span>Every</span> day<br>of the week.</h1>
+      <p class="lede">Scissorhands Barbershop specializes in razor cuts, sharp fades, and detailed designs — with same-day appointments and walk-ins available every single day, in a shop built to be comfortable for the whole family.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="tel:+17138990979">Call (713) 899-0979</a>
+        <a class="btn-secondary" href="https://www.google.com/maps/search/?api=1&query=Scissorhands+Barbershop+194+Gulf+Fwy+Suite+D1+League+City+TX+77573" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>4.5 ★</strong>200+ Reviews</div>
+        <div><strong>7 Days</strong>Open Weekly</div>
+        <div><strong>Dedric</strong>Owner &amp; Barber</div>
+      </div>
+    </div>
+    <div class="token-stage">
+      <div class="token">
+        <div class="token-text">
+          <div class="big">Good For<br>One Fresh Cut</div>
+          <div class="small">Scissorhands · League City</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual"><div class="qtxt">Razor cuts.<br>Sharp fades.<br><span>Every day, no wait.</span></div></div>
+    <div class="about-copy">
+      <span class="label">The Shop</span>
+      <h2 style="margin:14px 0 22px; font-size:clamp(1.7rem,3vw,2.2rem);">League City's go-to for fresh cuts.</h2>
+      <p>Scissorhands Barbershop sits on Gulf Freeway in League City, run by owner Dedric and a team that includes Tyrone, Lacey, and Kay. The shop specializes in razor cuts, fades, custom designs, and hot towel shaves, with staff trained to work with kids and clients with sensory sensitivities alike.</p>
+      <p>Same-day appointments and walk-ins are available every day of the week, so the shop works around your schedule rather than the other way around.</p>
+      <div class="about-stats">
+        <div><strong>4.5</strong><span>Avg. Rating</span></div>
+        <div><strong>7</strong><span>Days a Week</span></div>
+        <div><strong>0</strong><span>Wait for Walk-Ins</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="amenities-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Built For The Whole Family</h2>
+      <p>The details that make this more than just a haircut.</p>
+    </div>
+    <div class="amenities-grid">
+      <div class="amenity-card">
+        <span class="amenity-label">For Kids</span>
+        <div class="amenity-title">In-shop arcade</div>
+        <p>An arcade game keeps kids entertained while they wait — a small touch parents genuinely notice.</p>
+      </div>
+      <div class="amenity-card">
+        <span class="amenity-label">For Veterans</span>
+        <div class="amenity-title">Military-friendly staff</div>
+        <p>Stylists like Lacey are known for connecting with veteran clients and making the chair feel comfortable.</p>
+      </div>
+      <div class="amenity-card">
+        <span class="amenity-label">On The House</span>
+        <div class="amenity-title">Complimentary beverages</div>
+        <p>A drink while you wait, wheelchair-accessible facilities, and free Wi-Fi throughout the shop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Services</h2>
+      <p>Razor-sharp specialties for every member of the family.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-row"><div class="dot"></div><div class="name">Razor Cut</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Skin Fade</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Custom Hair Designs</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Hot Towel Shave</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Beard Trim</div></div>
+      <div class="service-row"><div class="dot"></div><div class="name">Kids Haircut</div></div>
+    </div>
+    <div class="service-note">Same-day appointments and walk-ins available <b>every day of the week</b> — call (713) 899-0979 to check current availability.</div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What Guests Say</h2>
+      <p>4.5 out of 5 across 200+ reviews.</p>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="quote">"Ask for D! Definitely worth a try — he'll have you looking fresh. Very clean and spacious, and there's an arcade game for the kids."</div>
+        <div class="who">Local Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="quote">"Kay was very professional and friendly. She did a great job keeping my son calm — he's very tender-headed and this was his first cut."</div>
+        <div class="who">Parent Guest</div>
+      </div>
+      <div class="review-card">
+        <div class="quote">"Great haircuts at reasonable prices, in a nice, clean shop."</div>
+        <div class="who">Local Guest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="label">Find The Shop</span>
+      <h2 style="margin:16px 0 34px; font-size:clamp(1.7rem,3vw,2.2rem);">Gulf Freeway, League City</h2>
+
+      <div class="visit-block">
+        <span class="label">Address</span>
+        <div class="value">194 Gulf Fwy, Suite D1<br>League City, TX 77573</div>
+      </div>
+      <div class="visit-block">
+        <span class="label">Phone</span>
+        <div class="value"><a href="tel:+17138990979">(713) 899-0979</a></div>
+      </div>
+
+      <span class="label">Hours</span>
+      <table class="hours-table">
+        <tr><td>Monday</td><td>11:00a – 6:00p</td></tr>
+        <tr><td>Tuesday</td><td>10:00a – 7:00p</td></tr>
+        <tr><td>Wednesday</td><td>10:00a – 8:00p</td></tr>
+        <tr class="today"><td>Thursday</td><td>10:00a – 7:00p</td></tr>
+        <tr><td>Friday</td><td>9:00a – 7:00p</td></tr>
+        <tr><td>Saturday</td><td>8:00a – 5:00p</td></tr>
+        <tr><td>Sunday</td><td>1:00p – 7:00p</td></tr>
+      </table>
+    </div>
+    <div class="map-frame">
+      <iframe
+        loading="lazy"
+        src="https://www.google.com/maps?q=194+Gulf+Fwy+Suite+D1,+League+City,+TX+77573&output=embed"
+        title="Map to Scissorhands Barbershop, 194 Gulf Fwy, League City, TX">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="label">Ready When You Are</span>
+    <h2 style="margin-top:16px;">Get in the chair.</h2>
+    <p>194 Gulf Fwy, Suite D1, League City, TX — open 7 days, walk-ins welcome.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a class="btn-primary" href="tel:+17138990979">Call (713) 899-0979</a>
+      <a class="btn-secondary" href="https://www.instagram.com/scissorhands_barbershop/" target="_blank" rel="noopener">See us on Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="brand">Scissorhands Barbershop</div>
+      <div class="footer-links">
+        <a href="tel:+17138990979">(713) 899-0979</a>
+        <a href="https://www.instagram.com/scissorhands_barbershop/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/scissorhandsbarbershop1355/" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-note">194 Gulf Fwy, Suite D1, League City, TX 77573 · This is an unofficial concept preview site, not affiliated with or published by Scissorhands Barbershop.</div>
+  </div>
+</footer>
+
+<div class="preview-badge">Concept Preview</div>
+
+</body>
+</html>
