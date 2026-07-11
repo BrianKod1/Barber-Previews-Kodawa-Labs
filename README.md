@@ -27,6 +27,7 @@ These are **not affiliated with or published by** the businesses they're built f
 | 17 | Scissorhands Barbershop | League City, TX | [`sites/scissorhands-barbershop`](sites/scissorhands-barbershop) |
 | 18 | Gentlemen's Cut Barber Shop | Waterloo, ON | [`sites/gentlemens-cut`](sites/gentlemens-cut) |
 | 19 | Extraordinary Premium Barber & Beauty | Croydon, England | [`sites/extraordinary-premium`](sites/extraordinary-premium) |
+| 20 | Jacobs Barbers | Etobicoke, ON | [`sites/jacobs-barbers`](sites/jacobs-barbers) |
 
 ## Structure
 
