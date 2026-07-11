@@ -28,6 +28,7 @@ These are **not affiliated with or published by** the businesses they're built f
 | 18 | Gentlemen's Cut Barber Shop | Waterloo, ON | [`sites/gentlemens-cut`](sites/gentlemens-cut) |
 | 19 | Extraordinary Premium Barber & Beauty | Croydon, England | [`sites/extraordinary-premium`](sites/extraordinary-premium) |
 | 20 | Jacobs Barbers | Etobicoke, ON | [`sites/jacobs-barbers`](sites/jacobs-barbers) |
+| 21 | By The Blade Barbers | Ajax, ON | [`sites/by-the-blade-barbers`](sites/by-the-blade-barbers) |
 
 ## Structure
 
