@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacobs Barbers — Etobicoke</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --paper:#F7F6F3;
+    --paper-2:#EFEDE8;
+    --grey:#8B8983;
+    --charcoal:#2A2926;
+    --spring:#AFE1BA;
+    --spring-deep:#7FC993;
+    --line: rgba(42,41,38,0.10);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--white);
+    color:var(--charcoal);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+
+  .eyebrow{
+    font-family:'Inter', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.7rem;
+    font-weight:600;
+    color:var(--grey);
+  }
+  h1,h2,h3{
+    font-family:'Instrument Serif', serif;
+    font-weight:400;
+    line-height:1.08;
+    color:var(--charcoal);
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 44px;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.3s ease;
+  }
+  header.scrolled{border-bottom-color:var(--line);}
+  header .brand{
+    font-family:'Instrument Serif', serif; font-style:italic; font-size:1.5rem; letter-spacing:0.01em;
+  }
+  nav{display:flex; gap:38px; align-items:center;}
+  nav a{
+    font-size:0.85rem; letter-spacing:0.02em; color:var(--charcoal); opacity:0.68;
+    transition:opacity 0.2s ease;
+  }
+  nav a:hover, nav a:focus-visible{opacity:1;}
+  .nav-cta{
+    background:var(--spring); color:var(--charcoal); padding:11px 22px; border-radius:30px;
+    font-size:0.85rem; font-weight:500; opacity:1 !important;
+    transition:background 0.2s ease;
+  }
+  .nav-cta:hover{background:var(--spring-deep);}
+  @media (max-width:860px){ nav a:not(.nav-cta){display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh; display:flex; align-items:center;
+    padding-top:120px; padding-bottom:80px;
+    position:relative;
+  }
+  .hero-inner{max-width:720px;}
+  .hero .eyebrow{margin-bottom:26px; display:flex; align-items:center; gap:12px;}
+  .hero .eyebrow .rule{width:30px; height:1px; background:var(--grey);}
+  .hero h1{
+    font-size:clamp(3rem, 7vw, 5.2rem);
+    margin-bottom:28px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{font-style:italic; color:var(--spring-deep);}
+  .hero p.lede{
+    font-size:1.15rem; line-height:1.7; color:var(--grey);
+    max-width:480px; margin-bottom:44px;
+    font-weight:400;
+  }
+  .hero-actions{display:flex; gap:18px; flex-wrap:wrap; align-items:center;}
+  .btn-primary{
+    background:var(--spring); color:var(--charcoal); padding:16px 34px; border-radius:30px;
+    font-size:0.92rem; font-weight:500; display:inline-block; transition:all 0.2s ease;
+  }
+  .btn-primary:hover{background:var(--spring-deep);}
+  .btn-ghost{
+    padding:16px 8px; font-size:0.92rem; color:var(--charcoal); border-bottom:1px solid var(--charcoal);
+    display:inline-block; transition:opacity 0.2s ease;
+  }
+  .btn-ghost:hover{opacity:0.6;}
+
+  .hero-facts{
+    display:flex; gap:48px; margin-top:70px; padding-top:32px; border-top:1px solid var(--line);
+  }
+  .hero-facts div strong{
+    display:block; font-family:'Instrument Serif', serif; font-size:1.9rem; color:var(--charcoal); font-weight:400;
+  }
+  .hero-facts div span{
+    font-size:0.78rem; color:var(--grey); letter-spacing:0.02em;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:120px 0;}
+  .section-alt{background:var(--paper);}
+  .section-head{
+    margin-bottom:60px; max-width:560px;
+  }
+  .section-head h2{font-size:clamp(2.2rem, 4.4vw, 3.2rem); margin-top:16px;}
+  .section-head p{color:var(--grey); font-size:1.02rem; line-height:1.65; margin-top:18px;}
+
+  /* ---------- WHAT TO EXPECT ---------- */
+  .pillars{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .pillar{background:var(--white); padding:44px 36px;}
+  .pillar .p-num{font-family:'Instrument Serif', serif; font-style:italic; font-size:1.1rem; color:var(--spring-deep); margin-bottom:20px; display:block;}
+  .pillar h3{font-size:1.6rem; margin-bottom:16px;}
+  .pillar p{color:var(--grey); font-size:0.96rem; line-height:1.7;}
+  @media (max-width:800px){ .pillars{grid-template-columns:1fr;} }
+
+  /* ---------- STORY / TIMELINE ---------- */
+  .story-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:80px; align-items:start;}
+  .story-copy p{color:var(--grey); line-height:1.8; font-size:1.02rem; margin-bottom:20px;}
+  .story-copy .signature-line{
+    font-family:'Instrument Serif', serif; font-style:italic; font-size:1.3rem; color:var(--charcoal);
+    margin-top:30px;
+  }
+  .timeline{position:relative; padding-left:2px;}
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line);
+  }
+  .t-item{position:relative; padding-left:34px; padding-bottom:46px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:0; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--white); border:2px solid var(--spring-deep);
+  }
+  .t-item .t-year{font-family:'Instrument Serif', serif; font-size:1.7rem; color:var(--charcoal); margin-bottom:6px;}
+  .t-item p{color:var(--grey); font-size:0.95rem; line-height:1.65; max-width:400px;}
+  @media (max-width:860px){ .story-grid{grid-template-columns:1fr; gap:50px;} }
+
+  /* ---------- PRICING ---------- */
+  .pricing-card{
+    background:var(--charcoal); color:var(--white); border-radius:6px;
+    padding:60px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:30px;
+  }
+  .pricing-card .p-left .eyebrow{color:rgba(255,255,255,0.5);}
+  .pricing-card .p-left h3{color:var(--white); font-size:2.1rem; margin-top:14px;}
+  .pricing-card .p-left p{color:rgba(255,255,255,0.6); margin-top:12px; max-width:340px; line-height:1.6; font-size:0.95rem;}
+  .pricing-card .p-right{text-align:right;}
+  .pricing-card .price{font-family:'Instrument Serif', serif; font-size:4.5rem; color:var(--spring); line-height:1;}
+  .pricing-card .price-sub{font-size:0.8rem; color:rgba(255,255,255,0.5); margin-top:6px;}
+  @media (max-width:700px){
+    .pricing-card{padding:44px 32px; text-align:left;}
+    .pricing-card .p-right{text-align:left;}
+  }
+
+  /* ---------- VISIT ---------- */
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
+  .visit-block{margin-bottom:32px;}
+  .visit-block .eyebrow{margin-bottom:10px; display:block;}
+  .visit-block .value{font-family:'Instrument Serif', serif; font-size:1.4rem;}
+  .visit-block .note{font-size:0.9rem; color:var(--grey); margin-top:8px; line-height:1.6;}
+  .hours-table{width:100%; border-collapse:collapse; margin-top:6px;}
+  .hours-table td{
+    padding:11px 0; border-bottom:1px solid var(--line);
+    font-size:0.92rem;
+  }
+  .hours-table td:first-child{color:var(--grey);}
+  .hours-table td:last-child{text-align:right; color:var(--charcoal); font-weight:500;}
+  .hours-table tr.today td{color:var(--spring-deep); font-weight:600;}
+  .hours-table tr.closed td:last-child{color:var(--grey); font-weight:400;}
+  .map-frame{
+    border-radius:6px; overflow:hidden; border:1px solid var(--line); aspect-ratio:1/1;
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter:grayscale(20%) contrast(0.98);}
+  @media (max-width:860px){ .visit-grid{grid-template-columns:1fr;} }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta-band{
+    text-align:center; padding:130px 0;
+  }
+  .cta-band h2{font-size:clamp(2.4rem, 5.6vw, 3.8rem); margin-top:18px;}
+  .cta-band p{color:var(--grey); max-width:440px; margin:22px auto 40px; line-height:1.65; font-size:1.02rem;}
+
+  footer{padding:50px 0; border-top:1px solid var(--line);}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-grid .brand{font-family:'Instrument Serif', serif; font-style:italic; font-size:1.3rem;}
+  .footer-links{display:flex; gap:30px; font-size:0.85rem; color:var(--grey);}
+  .footer-links a:hover{color:var(--charcoal);}
+  .footer-note{font-size:0.78rem; color:var(--grey); margin-top:20px; text-align:center;}
+
+  .preview-badge{
+    position:fixed; bottom:20px; right:20px; z-index:200;
+    background:var(--charcoal); color:var(--white);
+    font-size:0.72rem; text-transform:uppercase;
+    letter-spacing:0.06em; font-weight:500; padding:10px 16px; border-radius:30px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.15);
+  }
+  :focus-visible{outline:2px solid var(--spring-deep); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="brand">Jacobs</div>
+  <nav>
+    <a href="#about">Story</a>
+    <a href="#experience">Experience</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#visit">Visit</a>
+    <a class="nav-cta" href="https://jacobsbarbers.mysalononline.com/Booking/?sid=0&guid=930aeb35-9485-4ee4-9786-aefa81fcb1c2" target="_blank" rel="noopener">Book Now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="eyebrow"><div class="rule"></div>North Queen Street · Etobicoke</div>
+      <h1>A precise cut,<br>an <em>unhurried</em> visit.</h1>
+      <p class="lede">Jacobs Barbers has been Etobicoke's quiet favourite since 2016 — a proper consultation, a clean fast cut, and a shop that never feels rushed.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://jacobsbarbers.mysalononline.com/Booking/?sid=0&guid=930aeb35-9485-4ee4-9786-aefa81fcb1c2" target="_blank" rel="noopener">Book Your Appointment</a>
+        <a class="btn-ghost" href="tel:6476883094">Call 647 688 3094</a>
+      </div>
+      <div class="hero-facts">
+        <div><strong>2016</strong><span>Est. in Etobicoke</span></div>
+        <div><strong>20 min</strong><span>Efficient, every cut</span></div>
+        <div><strong>$45</strong><span>Every haircut</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What To Expect</span>
+      <h2>Three parts to every visit.</h2>
+      <p>From the moment you sit down, the whole appointment is built around getting your style right — not rushing you out the door.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="p-num">01</span>
+        <h3>Consultation</h3>
+        <p>A real conversation first. Jacobs listens to what you want, reads your hair's natural pattern, and talks through the options before a single cut is made.</p>
+      </div>
+      <div class="pillar">
+        <span class="p-num">02</span>
+        <h3>Cutting</h3>
+        <p>Precise, efficient, and done in about 20 minutes — using modern tools kept to current Ontario sanitary and hairstyling standards.</p>
+      </div>
+      <div class="pillar">
+        <span class="p-num">03</span>
+        <h3>Shop Experience</h3>
+        <p>Friendly, clean, unhurried. Settle in, listen to the music, and let the rest of your day wait outside for twenty minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="about">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-copy">
+        <span class="eyebrow">The Story</span>
+        <h2 style="margin:16px 0 26px; font-size:clamp(2.1rem,3.6vw,2.8rem);">From dolls' hair to a chair of her own.</h2>
+        <p>Jacobs started cutting hair at five years old — dolls first, then family members and friends brave enough to sit still. What began as a habit became a trade: she trained and certified through the Ontario College of Trades and the Ministry of Training, Colleges, and Universities.</p>
+        <p>Today, that same care shapes every appointment at the shop — a small, personal barbering practice built one loyal client at a time.</p>
+        <div class="signature-line">Still cutting. Still listening.</div>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-year">2016</div>
+          <p>Jacobs opens her first shop on The Queensway, and builds a loyal following over the next several years.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2020</div>
+          <p>Pandemic restrictions pause hair styling operations shop-wide, and the Queensway location closes for good the following year.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2022</div>
+          <p>Jacobs reopens at 170 North Queen Street, welcoming old regulars back and new faces in for the first time.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">Today</div>
+          <p>Still at North Queen Street, still booked by word of mouth — a shop built on showing up, appointment after appointment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="pricing-card">
+      <div class="p-left">
+        <span class="eyebrow">Pricing</span>
+        <h3>Simple, on purpose.</h3>
+        <p>One rate, no upsells, no surprises at the chair — whatever style you're after, it's the same straightforward price.</p>
+      </div>
+      <div class="p-right">
+        <div class="price">$45</div>
+        <div class="price-sub">every haircut</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <span class="eyebrow">Find The Shop</span>
+      <h2 style="margin:16px 0 34px; font-size:clamp(2.1rem,3.6vw,2.8rem);">North Queen Street</h2>
+
+      <div class="visit-block">
+        <span class="eyebrow">Address</span>
+        <div class="value">170 North Queen Street, Studio 7<br>Etobicoke, ON M9C 1B1</div>
+        <div class="note">Inside JC Salons — four units west of Dollarama, near Sherway Gardens.</div>
+      </div>
+      <div class="visit-block">
+        <span class="eyebrow">Phone</span>
+        <div class="value"><a href="tel:6476883094">647 688 3094</a></div>
+      </div>
+
+      <span class="eyebrow">Hours</span>
+      <table class="hours-table">
+        <tr class="closed"><td>Monday</td><td>Closed</td></tr>
+        <tr><td>Tuesday</td><td>10:00a – 6:00p</td></tr>
+        <tr><td>Wednesday</td><td>10:00a – 6:00p</td></tr>
+        <tr class="today"><td>Thursday</td><td>11:30a – 5:00p</td></tr>
+        <tr><td>Friday</td><td>10:00a – 6:00p</td></tr>
+        <tr><td>Saturday</td><td>10:00a – 3:00p</td></tr>
+        <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+      </table>
+    </div>
+    <div class="map-frame">
+      <iframe
+        loading="lazy"
+        src="https://www.google.com/maps?q=170+North+Queen+Street,+Etobicoke,+ON+M9C+1B1&output=embed"
+        title="Map to Jacobs Barbers, 170 North Queen Street, Etobicoke">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="eyebrow">Ready When You Are</span>
+    <h2>Let's get you in the chair.</h2>
+    <p>Book online in under a minute, or call the shop directly.</p>
+    <a class="btn-primary" href="https://jacobsbarbers.mysalononline.com/Booking/?sid=0&guid=930aeb35-9485-4ee4-9786-aefa81fcb1c2" target="_blank" rel="noopener">Book Your Appointment</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="brand">Jacobs Barbers</div>
+      <div class="footer-links">
+        <a href="tel:6476883094">647 688 3094</a>
+        <a href="https://jacobsbarbers.mysalononline.com/Booking/?sid=0&guid=930aeb35-9485-4ee4-9786-aefa81fcb1c2" target="_blank" rel="noopener">Book Online</a>
+      </div>
+    </div>
+    <div class="footer-note">170 North Queen Street, Studio 7, Etobicoke, ON M9C 1B1</div>
+  </div>
+</footer>
+
+<div class="preview-badge">Concept Preview</div>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
+</script>
+
+</body>
+</html>
