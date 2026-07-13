@@ -10,19 +10,19 @@ WHERE THE PHOTOS LIVE
 Inside your website folder, open: images
 
 You'll see files named:
-  hero.jpg           -> the big photo at the top of the homepage
-  about-lucyna.jpg    -> your photo in the About section
-  cut-1.jpg           -> first photo in the gallery grid
-  cut-2.jpg           -> second photo in the gallery grid
-  cut-3.jpg           -> third photo in the gallery grid
-  ...through cut-8.jpg
+  hero.jpeg           -> the big photo at the top of the homepage
+  about-lucyna.jpeg    -> your photo in the About section
+  cut-1.jpeg           -> first photo in the gallery grid
+  cut-2.jpeg           -> second photo in the gallery grid
+  cut-3.jpeg           -> third photo in the gallery grid
+  ...through cut-8.jpeg
 
 TO REPLACE A PHOTO
 --------------------
 1. Pick the new photo you want to use.
 2. Rename it to match EXACTLY the file it's replacing.
    For example, if you're swapping the 3rd gallery photo,
-   rename your new photo to:  cut-3.jpg
+   rename your new photo to:  cut-3.jpeg
 3. Drag that renamed file into the "images" folder, and
    choose "Replace" when it asks if you want to overwrite
    the existing file.
@@ -31,8 +31,8 @@ TO REPLACE A PHOTO
 
 A FEW TIPS
 ------------
-- Keep the file extension the same (.jpg stays .jpg). If your
-  new photo is a .png or .heic, either save/export it as a .jpg
+- Keep the file extension the same (.jpeg stays .jpeg). If your
+  new photo is a .png or .heic, either save/export it as a .jpeg
   first, or ask your developer to update one line of code to
   match — either works.
 - Photos that are roughly upright/portrait shaped (taller than
