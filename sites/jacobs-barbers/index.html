@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jacobs Barbers — Etobicoke</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -62,6 +63,9 @@
   header.scrolled{border-bottom-color:var(--line);}
   header .brand{
     font-family:'Instrument Serif', serif; font-style:italic; font-size:1.5rem; letter-spacing:0.01em;
+  }
+  header .brand img{
+    height:40px; width:auto; display:block;
   }
   nav{display:flex; gap:34px; align-items:center;}
   nav a{
@@ -188,6 +192,7 @@
   footer{padding:50px 0; border-top:1px solid var(--line);}
   .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
   .footer-grid .brand{font-family:'Instrument Serif', serif; font-style:italic; font-size:1.3rem;}
+  .footer-grid .brand img{height:28px; width:auto; display:block;}
   .footer-links{display:flex; gap:30px; font-size:0.85rem; color:var(--grey);}
   .footer-links a:hover{color:var(--charcoal);}
   .footer-note{font-size:0.78rem; color:var(--grey); margin-top:20px; text-align:center;}
@@ -204,7 +209,7 @@
 <body>
 
 <header id="siteHeader">
-  <div class="brand">Jacobs</div>
+  <div class="brand"><img src="images/logo.png" alt="Jacobs Barbers"></div>
   <nav>
     <a href="#services">Services</a>
     <a href="#gallery">Gallery</a>
@@ -359,7 +364,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-grid">
-      <div class="brand">Jacobs Barbers</div>
+      <div class="brand"><img src="images/logo.png" alt="Jacobs Barbers"></div>
       <div class="footer-links">
         <a href="tel:6476883094">647 688 3094</a>
         <a href="https://jacobsbarbers.mysalononline.com/Booking/?sid=0&guid=930aeb35-9485-4ee4-9786-aefa81fcb1c2" target="_blank" rel="noopener">Book Online</a>
