@@ -7,24 +7,24 @@
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --white:#FFFFFF;
-    --paper:#F7F6F3;
-    --paper-2:#EFEDE8;
-    --grey:#8B8983;
-    --charcoal:#262524;
+    --white:#FEF8E5;
+    --paper:#F8EFD3;
+    --paper-2:#F1E5BE;
+    --grey:#8B8570;
+    --charcoal:#2A2820;
     --spring:#AFE1BA;
     --spring-deep:#7FC993;
-    --line: rgba(38,37,36,0.10);
+    --line: rgba(42,40,32,0.10);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
     background:var(--white);
     color:var(--charcoal);
-    font-family:'Inter', sans-serif;
+    font-family:'EB Garamond', serif;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
@@ -35,7 +35,7 @@
   img{display:block; max-width:100%; width:100%; height:100%; object-fit:cover;}
 
   .eyebrow{
-    font-family:'Inter', sans-serif;
+    font-family:'EB Garamond', serif;
     text-transform:uppercase;
     letter-spacing:0.22em;
     font-size:0.7rem;
@@ -43,7 +43,7 @@
     color:var(--grey);
   }
   h1,h2,h3{
-    font-family:'Instrument Serif', serif;
+    font-family:'EB Garamond', serif;
     font-weight:400;
     line-height:1.08;
     color:var(--charcoal);
@@ -62,7 +62,7 @@
   }
   header.scrolled{border-bottom-color:var(--line);}
   header .brand{
-    font-family:'Instrument Serif', serif; font-style:italic; font-size:1.5rem; letter-spacing:0.01em;
+    font-family:'EB Garamond', serif; font-style:italic; font-size:1.5rem; letter-spacing:0.01em;
   }
   header .brand img{
     height:40px; width:auto; display:block;
@@ -91,9 +91,10 @@
   .hero .eyebrow{margin-bottom:26px; display:flex; align-items:center; gap:12px;}
   .hero .eyebrow .rule{width:30px; height:1px; background:var(--grey);}
   .hero h1{
-    font-size:clamp(3rem, 7vw, 5.2rem);
+    font-size:clamp(3.2rem, 8.5vw, 6.8rem);
     margin-bottom:28px;
     letter-spacing:-0.01em;
+    font-weight:400;
   }
   .hero h1 em{font-style:italic; color:var(--spring-deep);}
   .hero p.lede{
@@ -113,7 +114,7 @@
   .btn-ghost:hover{opacity:0.6;}
 
   .hero-photo{
-    margin-top:100px; margin-bottom:20px; border-radius:10px; overflow:hidden;
+    margin-top:100px; margin-bottom:0; border-radius:10px; overflow:hidden;
     border:1px solid var(--line); background:var(--paper);
   }
   .hero-photo img{
@@ -132,7 +133,7 @@
   .service-table tr{border-bottom:1px solid var(--line);}
   .service-table tr:first-child{border-top:1px solid var(--line);}
   .service-table td{padding:22px 0; vertical-align:top;}
-  .service-table td.s-name{font-family:'Instrument Serif', serif; font-size:1.4rem; padding-right:24px;}
+  .service-table td.s-name{font-family:'EB Garamond', serif; font-size:1.4rem; padding-right:24px;}
   .service-table td.s-desc{color:var(--grey); font-size:0.92rem; line-height:1.6; padding-right:24px;}
   .service-table td.s-price{
     font-size:0.95rem; font-weight:500; white-space:nowrap; text-align:right; color:var(--charcoal);
@@ -164,7 +165,7 @@
   .about-photo{aspect-ratio:4/5; border-radius:6px; overflow:hidden; border:1px solid var(--line); background:var(--paper);}
   .about-copy p{color:var(--grey); line-height:1.8; font-size:1.02rem; margin-bottom:20px;}
   .about-copy .signature-line{
-    font-family:'Instrument Serif', serif; font-style:italic; font-size:1.3rem; color:var(--charcoal); margin-top:26px;
+    font-family:'EB Garamond', serif; font-style:italic; font-size:1.3rem; color:var(--charcoal); margin-top:26px;
   }
   @media (max-width:860px){
     .about-grid{grid-template-columns:1fr; gap:44px;}
@@ -174,7 +175,7 @@
   .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px;}
   .visit-block{margin-bottom:32px;}
   .visit-block .eyebrow{margin-bottom:10px; display:block;}
-  .visit-block .value{font-family:'Instrument Serif', serif; font-size:1.4rem;}
+  .visit-block .value{font-family:'EB Garamond', serif; font-size:1.4rem;}
   .visit-block .note{font-size:0.9rem; color:var(--grey); margin-top:8px; line-height:1.6;}
   .hours-table{width:100%; border-collapse:collapse; margin-top:6px;}
   .hours-table td{padding:11px 0; border-bottom:1px solid var(--line); font-size:0.92rem;}
@@ -194,7 +195,7 @@
 
   footer{padding:50px 0; border-top:1px solid var(--line);}
   .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
-  .footer-grid .brand{font-family:'Instrument Serif', serif; font-style:italic; font-size:1.3rem;}
+  .footer-grid .brand{font-family:'EB Garamond', serif; font-style:italic; font-size:1.3rem;}
   .footer-grid .brand img{height:28px; width:auto; display:block;}
   .footer-links{display:flex; gap:30px; font-size:0.85rem; color:var(--grey);}
   .footer-links a:hover{color:var(--charcoal);}
@@ -244,36 +245,36 @@
     <div class="section-head">
       <span class="eyebrow">Services</span>
       <h2>What's on offer.</h2>
-      <p>A sample layout below — swap in real service names, descriptions, and price ranges whenever you're ready.</p>
+      <p>All haircuts are $45 flat — no tiers, no surprises at the chair.</p>
     </div>
     <table class="service-table">
       <tr>
         <td class="s-name">Classic Cut</td>
         <td class="s-desc">A clean, timeless cut tailored to face shape and hair type.</td>
-        <td class="s-price">$XX&ndash;$XX</td>
+        <td class="s-price">$45</td>
       </tr>
       <tr>
         <td class="s-name">Skin Fade</td>
         <td class="s-desc">Precision fade blended smoothly from skin to length.</td>
-        <td class="s-price">$XX&ndash;$XX</td>
-      </tr>
-      <tr>
-        <td class="s-name">Beard Trim &amp; Shape</td>
-        <td class="s-desc">Shaped and lined for a sharp, well-kept finish.</td>
-        <td class="s-price">$XX&ndash;$XX</td>
-      </tr>
-      <tr>
-        <td class="s-name">Cut &amp; Beard Combo</td>
-        <td class="s-desc">The full service — haircut and beard work, together.</td>
-        <td class="s-price">$XX&ndash;$XX</td>
+        <td class="s-price">$45</td>
       </tr>
       <tr>
         <td class="s-name">Kids Cut</td>
         <td class="s-desc">Patient, easygoing cuts for younger clients.</td>
-        <td class="s-price">$XX&ndash;$XX</td>
+        <td class="s-price">$45</td>
+      </tr>
+      <tr>
+        <td class="s-name">Beard Trim &amp; Shape</td>
+        <td class="s-desc">Shaped and lined for a sharp, well-kept finish.</td>
+        <td class="s-price">TBD</td>
+      </tr>
+      <tr>
+        <td class="s-name">Cut &amp; Beard Combo</td>
+        <td class="s-desc">The full service — haircut and beard work, together.</td>
+        <td class="s-price">TBD</td>
       </tr>
     </table>
-    <div class="placeholder-note">This is placeholder content. Send over the real service names, descriptions, and price ranges and they'll drop straight into this table.</div>
+    <div class="placeholder-note">Haircuts confirmed at a flat $45. Beard trim and combo pricing still marked TBD — send those over and they'll drop straight in.</div>
   </div>
 </section>
 
