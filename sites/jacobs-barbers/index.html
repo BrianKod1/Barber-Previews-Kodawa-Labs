@@ -84,7 +84,7 @@
   /* ---------- HERO ---------- */
   .hero{
     min-height:100svh; display:flex; align-items:center;
-    padding-top:120px; padding-bottom:80px;
+    padding-top:120px; padding-bottom:40px;
     position:relative;
     background-image:url('images/hero.jpeg');
     background-size:cover;
@@ -110,6 +110,10 @@
     text-shadow:0 2px 24px rgba(0,0,0,0.25);
   }
   .hero h1 em{font-style:italic; color:var(--spring);}
+  .hero-logo{
+    width:100%; max-width:560px; height:auto; margin-bottom:28px; display:block;
+    filter:drop-shadow(0 2px 20px rgba(0,0,0,0.25));
+  }
   .hero p.lede{
     font-size:1.15rem; line-height:1.7; color:rgba(255,255,255,0.82);
     max-width:480px; margin-bottom:44px;
@@ -147,6 +151,7 @@
 
   /* ---------- SECTION SHARED ---------- */
   section{padding:120px 0;}
+  #services{padding-top:60px;}
   .section-alt{background:var(--paper);}
   .section-head{margin-bottom:60px; max-width:560px;}
   .section-head h2{font-size:clamp(2.2rem, 4.4vw, 3.2rem); margin-top:16px;}
@@ -251,8 +256,8 @@
   <div class="wrap">
     <div class="hero-inner">
       <div class="eyebrow"><div class="rule"></div>North Queen Street · Etobicoke</div>
-      <h1>Jacobs Barbers</h1>
-      <p class="lede">A precise cut, an <em>unhurried</em> visit — every style, from a clean taper to something a little more distinctive.</p>
+      <img class="hero-logo" src="images/logo-white.png" alt="Jacobs Barbers">
+      <p class="lede">170 North Queen Street, Studio 7<br>Etobicoke, ON M9C 1B1</p>
       <div class="hero-actions">
         <a class="btn-primary" href="https://jacobsbarbers.mysalononline.com/Booking/?sid=0&guid=930aeb35-9485-4ee4-9786-aefa81fcb1c2" target="_blank" rel="noopener">Book Your Appointment</a>
         <a class="btn-ghost" href="tel:6476883094">Call 647 688 3094</a>
