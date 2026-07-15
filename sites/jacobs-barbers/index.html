@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --white:#FEF8E5;
-    --paper:#F8EFD3;
-    --paper-2:#F1E5BE;
-    --grey:#8B8570;
-    --charcoal:#2A2820;
+    --white:#FFFFFF;
+    --paper:#F7F6F3;
+    --paper-2:#EFEDE8;
+    --grey:#8B8983;
+    --charcoal:#262524;
     --spring:#AFE1BA;
     --spring-deep:#7FC993;
-    --line: rgba(42,40,32,0.10);
+    --line: rgba(38,37,36,0.10);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -86,7 +86,18 @@
     min-height:100svh; display:flex; align-items:center;
     padding-top:120px; padding-bottom:80px;
     position:relative;
+    background-image:url('images/hero.jpeg');
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
   }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(100deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.86) 32%, rgba(255,255,255,0.55) 62%, rgba(255,255,255,0.28) 100%);
+    z-index:1;
+  }
+  .hero .wrap{position:relative; z-index:2;}
   .hero-inner{max-width:720px;}
   .hero .eyebrow{margin-bottom:26px; display:flex; align-items:center; gap:12px;}
   .hero .eyebrow .rule{width:30px; height:1px; background:var(--grey);}
@@ -113,12 +124,21 @@
   }
   .btn-ghost:hover{opacity:0.6;}
 
-  .hero-photo{
-    margin-top:100px; margin-bottom:0; border-radius:10px; overflow:hidden;
-    border:1px solid var(--line); background:var(--paper);
+  /* ---------- DRIFT BANNER ---------- */
+  .drift-banner{
+    width:100%; height:56vh; min-height:340px; max-height:560px;
+    overflow:hidden; position:relative; background:var(--paper-2);
   }
-  .hero-photo img{
-    width:100%; height:auto; object-fit:contain; display:block;
+  .drift-banner img{
+    width:112%; height:112%; object-fit:cover; position:absolute; top:-6%; left:-6%;
+    animation:driftPan 34s ease-in-out infinite alternate;
+  }
+  @keyframes driftPan{
+    0%{ transform:translate(0,0) scale(1); }
+    100%{ transform:translate(-3.5%, -2%) scale(1.06); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .drift-banner img{ animation:none; }
   }
 
   /* ---------- SECTION SHARED ---------- */
@@ -234,11 +254,12 @@
         <a class="btn-ghost" href="tel:6476883094">Call 647 688 3094</a>
       </div>
     </div>
-    <div class="hero-photo">
-      <img src="images/hero.jpeg" alt="Jacobs Barbers shop">
-    </div>
   </div>
 </section>
+
+<div class="drift-banner">
+  <img src="images/banner.jpeg" alt="Jacobs Barbers">
+</div>
 
 <section id="services">
   <div class="wrap">
